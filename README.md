@@ -1,39 +1,219 @@
-# Estoque de uma Loja
+# Projeto: Estoque de uma Loja
 
-Atividade de banco de dados para cadastrar produtos, categorias e fornecedores, controlar o estoque e registrar entradas e saídas.
+Sistema desenvolvido para controlar o estoque de uma loja de roupas, permitindo o cadastro de produtos, categorias, fornecedores, estoque e movimentações de entrada e saída.
 
-## Arquivos
+---
 
-- ddl.sql: criação do banco e das tabelas.
-- dml.sql: inserção dos dados de teste.
-- normalizacao.md: explicação da normalização até a 3FN.
-- dicionario_dados.md: campos, tipos e restrições das tabelas.
-- categoria.csv: dados das categorias.
-- fornecedor.csv: dados dos fornecedores.
-- produto.csv: dados dos produtos.
-- estoque.csv: quantidades e localização dos produtos.
-- movimentacao_estoque.csv: entradas e saídas dos produtos.
-- MER/DER em PNG: diagrama do banco de dados.
+## MER DER - Conceitual
 
-## Como executar
+![MER DER Conceitual](mer_der.png)
 
-1. Abra a conexão no MySQL Workbench.
-2. Para criar o banco, abra e execute o ddl.sql.
-3. Depois, abra e execute o dml.sql uma única vez, com as tabelas vazias.
-4. Confira os registros nas cinco tabelas do banco estoque_loja.
+---
 
-O ddl.sql contém DROP DATABASE, que apaga o banco existente. Se as tabelas já estiverem criadas e vazias, execute somente o dml.sql.
+## Normalização
 
-## Dados de teste
+O banco de dados foi organizado para evitar repetição de informações e manter os dados separados corretamente.
 
-Os CSVs possuem cabeçalho e usam vírgula como separador. Os dados são fictícios e iguais aos do dml.sql.
+### 1FN
 
-Cada tabela possui 3 registros, exceto movimentacao_estoque, que possui 6.
+Todos os campos possuem apenas um valor e não existem campos com vários valores juntos.
 
-Considerando o estoque inicial zerado, os saldos são:
+### 2FN
 
-- Feijão: 50 entradas menos 5 saídas = 45 unidades.
-- Detergente: 40 entradas menos 8 saídas = 32 unidades.
-- Caderno: 30 entradas menos 3 saídas = 27 unidades.
+Todos os atributos dependem da chave primária de suas respectivas tabelas.
 
-Não é necessário importar os CSVs depois de executar o dml.sql, pois isso repetiria os dados.# sesi_bcd_vps01_tema_2026
+### 3FN
+
+Os dados foram separados em tabelas diferentes para evitar dependências desnecessárias.
+
+Exemplo:
+
+- Os dados da categoria ficam na tabela `categoria`.
+- Os dados do fornecedor ficam na tabela `fornecedor`.
+- O produto referencia categoria e fornecedor através de chaves estrangeiras.
+- O estoque referencia o produto.
+- As movimentações também referenciam o produto.
+
+---
+
+# Dicionário de Dados
+
+| Entidade | Atributo | Tipo | Tamanho | Descrição |
+|---|---|---|---|---|
+| Categoria | id | Inteiro | 11 | Identificador, PK, Auto incrementável |
+| Categoria | nome | Texto | 50 | Nome da categoria |
+| Categoria | descricao | Texto | 200 | Descrição da categoria |
+| Fornecedor | id | Inteiro | 11 | Identificador, PK, Auto incrementável |
+| Fornecedor | razao_social | Texto | 100 | Razão social do fornecedor |
+| Fornecedor | nome_fantasia | Texto | 100 | Nome fantasia do fornecedor |
+| Fornecedor | cnpj | Texto | 20 | CNPJ do fornecedor |
+| Fornecedor | telefone | Texto | 20 | Telefone do fornecedor |
+| Fornecedor | email | Texto | 100 | Email do fornecedor |
+| Fornecedor | endereco | Texto | 150 | Endereço do fornecedor |
+| Produto | id | Inteiro | 11 | Identificador, PK, Auto incrementável |
+| Produto | nome | Texto | 100 | Nome do produto |
+| Produto | descricao | Texto | 200 | Descrição do produto |
+| Produto | preco | Decimal | 10,2 | Preço do produto |
+| Produto | marca | Texto | 50 | Marca do produto |
+| Produto | id_categoria | Inteiro | 11 | FK referenciando Categoria |
+| Produto | id_fornecedor | Inteiro | 11 | FK referenciando Fornecedor |
+| Estoque | id_estoque | Inteiro | 11 | Identificador, PK, Auto incrementável |
+| Estoque | id_produto | Inteiro | 11 | FK referenciando Produto |
+| Estoque | quantidade | Inteiro | 11 | Quantidade disponível |
+| Estoque | quantidade_minima | Inteiro | 11 | Quantidade mínima permitida |
+| Estoque | localizacao | Texto | 100 | Local onde o produto está armazenado |
+| Movimentação de Estoque | id_movimentacao | Inteiro | 11 | Identificador, PK, Auto incrementável |
+| Movimentação de Estoque | id_produto | Inteiro | 11 | FK referenciando Produto |
+| Movimentação de Estoque | tipo | Texto | - | Tipo da movimentação: ENTRADA ou SAIDA |
+| Movimentação de Estoque | quantidade | Inteiro | 11 | Quantidade movimentada |
+| Movimentação de Estoque | data | Datetime | - | Data da movimentação |
+
+---
+
+# Dados de teste em CSV
+
+- [categoria.csv](categoria.csv)
+- [fornecedor.csv](fornecedor.csv)
+- [produto.csv](produto.csv)
+- [estoque.csv](estoque.csv)
+- [movimentacao_estoque.csv](movimentacao_estoque.csv)
+
+---
+
+# Script SQL DDL (Desenvolvimento: Criação do Banco de dados)
+
+```sql
+drop database if exists estoque_loja;
+
+create database estoque_loja;
+
+use estoque_loja;
+
+create table categoria(
+    id int primary key not null auto_increment,
+    nome varchar(50) not null,
+    descricao varchar(200)
+);
+
+create table fornecedor(
+    id int primary key not null auto_increment,
+    razao_social varchar(100) not null,
+    nome_fantasia varchar(100),
+    cnpj varchar(20) not null,
+    telefone varchar(20),
+    email varchar(100),
+    endereco varchar(150)
+);
+
+create table produto(
+    id int primary key not null auto_increment,
+    nome varchar(100) not null,
+    descricao varchar(200),
+    preco decimal(10,2) not null,
+    marca varchar(50),
+    id_categoria int not null,
+    id_fornecedor int not null
+);
+
+create table estoque(
+    id_estoque int primary key not null auto_increment,
+    id_produto int not null,
+    quantidade int not null,
+    quantidade_minima int not null,
+    localizacao varchar(100)
+);
+
+create table movimentacao_estoque(
+    id_movimentacao int primary key not null auto_increment,
+    id_produto int not null,
+    tipo enum('ENTRADA','SAIDA') not null,
+    quantidade int not null,
+    data datetime not null
+);
+
+alter table produto
+add constraint pertence
+foreign key (id_categoria)
+references categoria(id);
+
+alter table produto
+add constraint fornece
+foreign key (id_fornecedor)
+references fornecedor(id);
+
+alter table estoque
+add constraint possui
+foreign key (id_produto)
+references produto(id);
+
+alter table movimentacao_estoque
+add constraint movimenta
+foreign key (id_produto)
+references produto(id);
+```
+
+---
+
+# Script SQL DML (Manipulação: População com dados de teste)
+
+```sql
+use estoque_loja;
+
+insert into categoria(nome, descricao) values
+('Camisetas','Camisetas masculinas e femininas'),
+('Calcas','Calcas jeans e esportivas'),
+('Jaquetas','Jaquetas e casacos');
+
+insert into fornecedor(razao_social, nome_fantasia, cnpj, telefone, email, endereco) values
+('Roupas Brasil LTDA','Roupas Brasil','12.345.678/0001-10','19 99999-1111','contato@roupasbrasil.com','Rua das Flores, 100'),
+('Moda SP LTDA','Moda SP','23.456.789/0001-20','19 99999-2222','contato@modasp.com','Rua Central, 200'),
+('Estilo Fashion LTDA','Estilo Fashion','34.567.890/0001-30','19 99999-3333','contato@estilofashion.com','Avenida Brasil, 300');
+
+insert into produto(nome, descricao, preco, marca, id_categoria, id_fornecedor) values
+('Camiseta Preta','Camiseta basica preta',59.90,'Urban',1,1),
+('Calca Jeans','Calca jeans azul',129.90,'Denim',2,2),
+('Jaqueta Masculina','Jaqueta masculina preta',199.90,'Fashion',3,3);
+
+insert into estoque(id_produto, quantidade, quantidade_minima, localizacao) values
+(1,30,5,'Prateleira A1'),
+(2,20,5,'Prateleira B1'),
+(3,15,3,'Prateleira C1');
+
+insert into movimentacao_estoque(id_produto, tipo, quantidade, data) values
+(1,'ENTRADA',30,'2026-09-20 10:00:00'),
+(2,'ENTRADA',20,'2026-09-20 11:00:00'),
+(3,'ENTRADA',15,'2026-09-20 12:00:00');
+
+select * from categoria;
+select * from fornecedor;
+select * from produto;
+select * from estoque;
+select * from movimentacao_estoque;
+```
+
+---
+
+# Estrutura dos arquivos
+
+```text
+estoque_loja/
+│
+├── README.md
+├── ddl.sql
+├── dml.sql
+├── categoria.csv
+├── fornecedor.csv
+├── produto.csv
+├── estoque.csv
+├── movimentacao_estoque.csv
+└── mer_der.png
+```
+
+---
+
+# Como executar
+
+1. Executar o arquivo `ddl.sql` para criar o banco e as tabelas.
+2. Executar o arquivo `dml.sql` para inserir os dados de teste.
+3. Conferir os dados com os comandos `select`.
+4. Abrir o banco no phpMyAdmin para visualizar as tabelas e relacionamentos.
