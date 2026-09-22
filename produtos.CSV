@@ -1,0 +1,5 @@
+                                                                  Produtos
+id,nome,descricao,preco,marca,id_categoria,id_fornecedor
+1,Feijão carioca 1 kg,Pacote de feijão carioca,8.50,Horizonte,1,1
+2,Detergente 500 ml,Detergente neutro,2.80,Aurora,2,2
+3,Caderno 96 folhas,Caderno pautado,12.90,Ponto,3,3

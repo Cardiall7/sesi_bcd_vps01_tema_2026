@@ -1,0 +1,5 @@
+                                                                                                                       Fornecedor
+id,razao_social,nome_fantasia,cnpj,telefone,email,endereco
+1,Alimentos Horizonte Ltda,Horizonte,11.111.111/0001-11,11911111111,horizonte@example.com,Rua das Flores 100
+2,Limpeza Aurora Ltda,Aurora,22.222.222/0001-22,11922222222,aurora@example.com,Rua Central 200
+3,Papelaria Ponto Ltda,Ponto,33.333.333/0001-33,11933333333,ponto@example.com,Avenida Brasil 300

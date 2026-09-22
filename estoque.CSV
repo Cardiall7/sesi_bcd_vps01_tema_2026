@@ -1,0 +1,5 @@
+                                                               Estoque
+id_estoque,id_produto,quantidade,quantidade_minima,localizacao
+1,1,45,10,Prateleira A1
+2,2,32,8,Prateleira B1
+3,3,27,5,Prateleira C1
