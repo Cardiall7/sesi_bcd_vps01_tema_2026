@@ -6,11 +6,11 @@
 
 ## MER - Conceitual
 
-![MER Conceitual](https://github.com/Cardiall7/sesi_bcd_vps01_tema_2026/blob/main/MER_DER%20estoque-loja.png)
+![MER Conceitual](https://github.com/Cardiall7/sesi_bcd_vps01_tema_2026/blob/main/MER_DER-estoque-loja.png)
 
 ## DER - Conceitual
 
-![DER Conceitual](https://github.com/Cardiall7/sesi_bcd_vps01_tema_2026/blob/main/DER%20Logico%20(2).png)
+![DER Conceitual](https://github.com/Cardiall7/sesi_bcd_vps01_tema_2026/blob/main/DER-Logico-(2).png)
 
 
 # Dicionário de Dados
