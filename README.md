@@ -2,7 +2,7 @@
 
 ## Relacionamentos e Cardinalidades
 
-![Relacionamentos e Cardinalidades]()
+![Relacionamentos e Cardinalidades](https://github.com/Cardiall7/sesi_bcd_vps01_tema_2026/blob/main/relacionamentos-e-cardinalidades.png)
 
 ## MER - Conceitual
 
