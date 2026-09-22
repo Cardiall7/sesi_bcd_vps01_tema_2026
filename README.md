@@ -72,11 +72,11 @@ Exemplo:
 
 # Dados de teste em CSV
 
-- [categoria.csv](categoria.csv)
-- [fornecedor.csv](fornecedor.csv)
-- [produto.csv](produto.csv)
-- [estoque.csv](estoque.csv)
-- [movimentacao_estoque.csv](movimentacao_estoque.csv)
+- [categoria.csv](categoria.CSV)
+- [fornecedor.csv](fornecedor.CSV)
+- [produto.csv](produto.CSV)
+- [estoque.csv](estoque.CSV)
+- [movimentacao_estoque.csv](movimentacao_estoque.CSV)
 
 ---
 
@@ -211,9 +211,3 @@ estoque_loja/
 
 ---
 
-# Como executar
-
-1. Executar o arquivo `ddl.sql` para criar o banco e as tabelas.
-2. Executar o arquivo `dml.sql` para inserir os dados de teste.
-3. Conferir os dados com os comandos `select`.
-4. Abrir o banco no phpMyAdmin para visualizar as tabelas e relacionamentos.
