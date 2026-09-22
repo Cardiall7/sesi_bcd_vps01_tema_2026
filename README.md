@@ -9,33 +9,6 @@
 
 ![DER Conceitual](https://github.com/Cardiall7/sesi_bcd_vps01_tema_2026/blob/main/DER%20Logico%20(2).png)
 
----
-
-## Normalização
-
-O banco de dados foi organizado para evitar repetição de informações e manter os dados separados corretamente.
-
-### 1FN
-
-Todos os campos possuem apenas um valor e não existem campos com vários valores juntos.
-
-### 2FN
-
-Todos os atributos dependem da chave primária de suas respectivas tabelas.
-
-### 3FN
-
-Os dados foram separados em tabelas diferentes para evitar dependências desnecessárias.
-
-Exemplo:
-
-- Os dados da categoria ficam na tabela `categoria`.
-- Os dados do fornecedor ficam na tabela `fornecedor`.
-- O produto referencia categoria e fornecedor através de chaves estrangeiras.
-- O estoque referencia o produto.
-- As movimentações também referenciam o produto.
-
----
 
 # Dicionário de Dados
 
