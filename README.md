@@ -1,5 +1,8 @@
 # Projeto: Estoque de uma Loja
 
+## Relacionamentos e Cardinalidades
+
+![Relacionamentos e Cardinalidades]()
 
 ## MER - Conceitual
 
