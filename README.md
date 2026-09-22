@@ -191,10 +191,3 @@ select * from produto;
 select * from estoque;
 select * from movimentacao_estoque;
 ```
-
----
-
-```
-
----
-
