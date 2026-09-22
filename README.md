@@ -4,9 +4,9 @@ Sistema desenvolvido para controlar o estoque de uma loja de roupas, permitindo 
 
 ---
 
-## MER DER - Conceitual
+## MER - Conceitual
 
-![MER DER Conceitual](mer_der.png)
+![MER Conceitual](https://github.com/Cardiall7/sesi_bcd_vps01_tema_2026/blob/main/DER%20Logico%20(2).png)
 
 ---
 
