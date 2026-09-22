@@ -1,8 +1,5 @@
 # Projeto: Estoque de uma Loja
 
-Sistema desenvolvido para controlar o estoque de uma loja de roupas, permitindo o cadastro de produtos, categorias, fornecedores, estoque e movimentações de entrada e saída.
-
----
 
 ## MER - Conceitual
 
