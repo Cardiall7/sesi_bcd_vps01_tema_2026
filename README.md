@@ -81,7 +81,7 @@ Exemplo:
 
 ---
 
-# Script SQL DDL (Desenvolvimento: Criação do Banco de dados)
+# Script SQL DDL
 
 ```sql
 drop database if exists estoque_loja;
@@ -155,7 +155,7 @@ references produto(id);
 
 ---
 
-# Script SQL DML (Manipulação: População com dados de teste)
+# Script SQL DML
 
 ```sql
 use estoque_loja;
