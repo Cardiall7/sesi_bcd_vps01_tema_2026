@@ -194,20 +194,6 @@ select * from movimentacao_estoque;
 
 ---
 
-# Estrutura dos arquivos
-
-```text
-estoque_loja/
-│
-├── README.md
-├── ddl.sql
-├── dml.sql
-├── categoria.csv
-├── fornecedor.csv
-├── produto.csv
-├── estoque.csv
-├── movimentacao_estoque.csv
-└── mer_der.png
 ```
 
 ---
